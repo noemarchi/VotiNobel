@@ -11,7 +11,8 @@ import it.polito.tdp.nobel.model.Esame;
 
 public class EsameDAO {
 
-	public List<Esame> getTuttiEsami() {
+	public List<Esame> getTuttiEsami() 
+	{
 
 		final String sql = "SELECT * FROM esami";
 
@@ -40,7 +41,8 @@ public class EsameDAO {
 	/*
 	 * Data una matricola ed il codice insegnamento, iscrivi lo studente al corso.
 	 */
-	public boolean inserisciEsame(Esame esame) {
+	public boolean inserisciEsame(Esame esame) 
+	{
 
 		String sql = "INSERT IGNORE INTO `esamitriennale`.`esami` (`codins`, `nomecorso`, `voto`, `crediti`) VALUES(?,?,?,?)";
 		boolean returnValue = false;
@@ -68,7 +70,8 @@ public class EsameDAO {
 		return returnValue;
 	}
 
-	public boolean cancellaTuttiEsami() {
+	public boolean cancellaTuttiEsami() 
+	{
 		
 		String sql = "DELETE FROM esami";
 		boolean returnValue = false;

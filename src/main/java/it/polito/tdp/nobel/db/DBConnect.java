@@ -6,15 +6,18 @@ import java.sql.SQLException;
 
 public class DBConnect {
 
-	static private final String jdbcUrl = "jdbc:mysql://localhost/esamitriennale?user=root&password=rootroot";
+	static private final String jdbcUrl = "jdbc:mysql://localhost/esamitriennale?user=root&password=S4nsone1";
 
 	public static Connection getConnection() {
 
-		try {
+		try 
+		{
 			Connection connection = DriverManager.getConnection(jdbcUrl);
 			return connection;
 
-		} catch (SQLException e) {
+		} 
+		catch (SQLException e) 
+		{
 			e.printStackTrace();
 			throw new RuntimeException("Cannot get a connection " + jdbcUrl, e);
 		}

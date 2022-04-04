@@ -1,0 +1,94 @@
+INPUT:
+
+- insieme degli esami (ESAMI) {e1,e2,...,en}	--> N esami
+- numero di esami (m)
+
+
+
+OUTPUT: 
+
+- sottoinsieme di esami, tale che:
+	* somma ESAMI.crediti == m
+	* media ESAMI.voto sia massima
+
+	
+	
+1° APPROCCIO (il più "stupido") 	complessità = N!
+
+ad ogni livello L della ricorsione, inserisco un esame in PARZIALE.
+devo decidere quale --> li provo tutti
+SOLUZIONE PARZIALE = ad ogni livello L, PARZIALE sarà un sottoinsieme di esattamente L esami
+GENERAZIONE SOTTOPROBLEMI = aggiungere un nuovo esame a PARZIALE, tra quelli che non ho ancora aggiunto
+	--> PARZIALE = PARZIALE + ESAMI(i)
+	
+al livello L = 0 --> N scelte possibili
+	PARZIALE = {e1}
+		al livello L = 1
+			PARZIALE = {e1,e2}
+				al livello L = 2
+					PARZIALE = {e1,e2,e3}
+						...
+		al livello L = 1
+			PARZIALE = {e1,e3}
+				al livello L = 2
+					PARZIALE = {e1,e3,e2}
+						...
+	PARZIALE = {e2}
+		al livello L = 1
+			PARZIALE = {e2,e1}
+				al livello L = 2
+					PARZIALE = {e2,e1,e3}
+						...
+	...
+	PARZIALE = {en}
+	
+problema di questa soluzione: le soluzioni si ripetono!!!
+ad esempio, {e1,e2} {e2,e1}
+per questo problema, l'ordine NON conta
+
+CASI TERMINALI = 
+1) al livello L = N 				(N = numero di tutti gli esami)
+2) PARZIALE.sommaCrediti() == m		--> questa POTREBBE essere una soluzione (è la migliore?)
+									controllo se è la soluzione migliore (colcolando media voto)
+									poi return (esco dalla ricorsione)
+3) PARZIALE.sommaCrediti() > m		--> questa non può essere una soluzione 
+									poi return (esco dalla ricorsione)
+
+
+
+
+2° APPROCCIO (il più "furbo") 	complessità = 2^N
+
+generare i sottoproblemi uno per volta, scorrendo l'insieme di esami di partenza in ordine,
+decidendo per ogni esame:
+	* se debba essere inserito
+	* se non debba essere inserito
+	
+il livello della ricorsione coincide con l'esame da considerare
+
+L = 0	--> 2 scelte possibili
+	PARZIALE = {e1}
+		L = 1
+			PARZIALE = {e1,e2}
+				L = 2
+					PARZIALE = {e1,e2,e3}
+						...
+					PARZIALE = {e1,e2}
+			PARZIALE = {e1}
+
+	PARZIALE = {}
+		L = 1
+			PARZIALE = {e2}
+				...
+			PARZIALE = {}
+
+
+
+
+
+
+
+
+
+
+

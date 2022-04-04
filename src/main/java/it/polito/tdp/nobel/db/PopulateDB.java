@@ -2,9 +2,11 @@ package it.polito.tdp.nobel.db;
 
 import it.polito.tdp.nobel.model.Esame;
 
-public class PopulateDB {
+public class PopulateDB 
+{
 
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		
 		EsameDAO vd = new EsameDAO();
 		
